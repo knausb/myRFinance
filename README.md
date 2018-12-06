@@ -21,7 +21,7 @@ Where I try to teach myself about finance.
 *  An Introduction to Analysis of Financial Data with R. Ruey S. Tsay. Wiley. 2013
 * Statistics & Data Analysis for Financial Engineering. David Ruppert. Springer. 2011
 * Financial Risk Modelling and Portfolio Optimization with R. Berhard Pfaff. Second Edition. Wiley. 2016.
-* Automated Trading with R. Quantitative Research and Platform Development Chris Conlan. Apress. 2016.
+* [Automated Trading with R](https://www.oreilly.com/library/view/automated-trading-with/9781484221785/#toc-start). Quantitative Research and Platform Development Chris Conlan. Apress. 2016.
 * Introduction to R for Quantitative Finance. Gergely Darόczi. Packt. 2013.
 * Mastering R for Quantitative Finance. Edina Berlinger. Packt. 2015.
 

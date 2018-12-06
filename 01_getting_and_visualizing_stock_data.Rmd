@@ -1,0 +1,116 @@
+---
+title: "Getting and Visualizing Stock Data"
+author: "Brian Knaus"
+date: "December 5, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Getting and Visualizing Stock Data
+
+My working through the examples at [An Introduction to Stock Market Data Analysis with R (Part 1)](https://ntguardian.wordpress.com/2017/03/27/introduction-stock-market-data-r-1/).
+
+```{r}
+library(quantmod)
+
+start <- as.Date("2016-01-01")
+end <- as.Date("2016-10-01")
+
+getSymbols("AAPL", src = "yahoo", from = start, to = end)
+class(AAPL)
+head(AAPL)
+```
+
+
+```{r}
+plot(AAPL[, "AAPL.Close"], main = "AAPL")
+candleChart(AAPL, up.col = "black", dn.col = "red", theme = "white")
+```
+
+
+```{r}
+getSymbols(c("MSFT", "GOOG"), src = "yahoo", from = start, to = end)
+
+stocks <- as.xts(data.frame(AAPL = AAPL[, "AAPL.Close"], MSFT = MSFT[, "MSFT.Close"], 
+    GOOG = GOOG[, "GOOG.Close"]))
+head(stocks)
+```
+
+```{r}
+plot(as.zoo(stocks), screens = 1, lty = 1:3, xlab = "Date", ylab = "Price")
+legend("right", c("AAPL", "MSFT", "GOOG"), lty = 1:3, cex = 0.5)
+
+```
+
+
+```{r}
+plot(as.zoo(stocks[, c("AAPL.Close", "MSFT.Close")]), screens = 1, lty = 1:2, 
+    xlab = "Date", ylab = "Price")
+par(new = TRUE)
+plot(as.zoo(stocks[, "GOOG.Close"]), screens = 1, lty = 3, xaxt = "n", yaxt = "n", 
+    xlab = "", ylab = "")
+axis(4)
+mtext("Price", side = 4, line = 3)
+legend("topleft", c("AAPL (left)", "MSFT (left)", "GOOG"), lty = 1:3, cex = 0.5)
+```
+
+
+```{r}
+library(magrittr)
+stock_return = apply(stocks, 1, function(x) {x / stocks[1,]}) %>% 
+                                    t %>% as.xts
+head(stock_return)
+```
+
+
+```{r}
+plot(as.zoo(stock_return), screens = 1, lty = 1:3, xlab = "Date", ylab = "Return")
+legend("topleft", c("AAPL", "MSFT", "GOOG"), lty = 1:3, cex = 0.5)
+```
+
+
+```{r}
+stock_change = stocks %>% log %>% diff
+head(stock_change)
+```
+
+
+```{r}
+plot(as.zoo(stock_change), screens = 1, lty = 1:3, xlab = "Date", ylab = "Log Difference")
+legend("topleft", c("AAPL", "MSFT", "GOOG"), lty = 1:3, cex = 0.5)
+```
+
+
+```{r}
+candleChart(AAPL, up.col = "black", dn.col = "red", theme = "white")
+addSMA(n = 20)
+```
+
+
+```{r}
+start = as.Date("2010-01-01")
+getSymbols(c("AAPL", "MSFT", "GOOG"), src = "yahoo", from = start, to = end)
+```
+
+
+```{r}
+candleChart(AAPL, up.col = "black", dn.col = "red", theme = "white", subset = "2016-01-04/")
+addSMA(n = 20)
+```
+
+
+```{r}
+candleChart(AAPL, up.col = "black", dn.col = "red", theme = "white", subset = "2016-01-04/")
+addSMA(n = c(20, 50, 200))
+```
+
+## S & P?
+
+```{r}
+getSymbols(c("^GSPC"), src = "yahoo", from = start, to = end)
+candleChart(GSPC, up.col = "black", dn.col = "red", theme = "white", subset = "2016-01-04/")
+addSMA(n = c(30, 90, 360))
+```
