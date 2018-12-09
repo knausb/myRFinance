@@ -37,6 +37,7 @@ getSymbols(c("MSFT", "GOOG"), src = "yahoo", from = start, to = end)
 stocks <- as.xts(data.frame(AAPL = AAPL[, "AAPL.Close"], MSFT = MSFT[, "MSFT.Close"], 
     GOOG = GOOG[, "GOOG.Close"]))
 head(stocks)
+class(stocks)
 ```
 
 ```{r}

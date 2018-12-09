@@ -1,0 +1,44 @@
+---
+title: "SP"
+author: "Brian Knaus"
+date: "December 7, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## S & P
+
+```{r}
+library(quantmod)
+
+start <- as.Date("2008-01-01")
+end <- as.Date("2018-12-01")
+
+getSymbols("^GSPC", src = "yahoo", from = start, to = end)
+class(GSPC)
+head(GSPC)
+```
+
+
+```{r}
+#candleChart(GSPC, up.col = "black", dn.col = "red", theme = "white", subset = "2016-01-04/")
+candleChart(GSPC)
+```
+
+
+```{r}
+library(magrittr)
+
+stocks <- as.xts(data.frame(GSPC = GSPC[, "GSPC.Close"]))
+head(stocks)
+class(stocks)
+stock_return = apply(stocks, 1, function(x) {x[,1] / x[1,]}) %>% 
+                                    t %>% as.xts
+head(stock_return)
+```
+
+
+
