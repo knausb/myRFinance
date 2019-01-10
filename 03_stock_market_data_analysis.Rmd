@@ -1,0 +1,24 @@
+---
+title: "03_stock_market_data_analysis"
+author: "Brian Knaus"
+date: "December 16, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+My worked examples from [Curtis Miller's blog](https://ntguardian.wordpress.com/2017/04/03/introduction-stock-market-data-r-2/).
+
+
+## Trading strategy
+
+
+```{r}
+library(TTR)
+library(quantstrat)
+
+
+```
+

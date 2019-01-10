@@ -1,0 +1,26 @@
+---
+title: "ARIMA in R"
+author: "Brian Knaus"
+date: "January 10, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+My worked examples from the [datascience.com](https://www.datascience.com/blog/introduction-to-forecasting-with-arima-in-r-learn-data-science-tutorials) site.
+
+
+```{r}
+library('ggplot2')
+library('forecast')
+library('tseries')
+
+daily_data = read.csv('day.csv', header=TRUE, stringsAsFactors=FALSE)
+head(daily_data)
+```
+
+
+

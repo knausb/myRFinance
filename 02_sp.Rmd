@@ -24,13 +24,15 @@ suppressPackageStartupMessages(library(quantmod))
 getSP <- function(start, end){
   start <- as.Date(start)
   end <- as.Date(end)
-  suppressMessages(getSymbols("^GSPC", src = "yahoo", from = start, to = end))
+  suppressMessages(getSymbols("^GSPC", src = "yahoo", from = start - 365, to = end))
   stocks <- as.xts(data.frame(GSPC = GSPC[,"GSPC.Close"]))
-  stock_return <- apply(stocks, 1, function(x) {x / stocks[1,]})
+  
+
+  stock_return <- apply(stocks, 1, function(x) {x / stocks[366,]})
   stock_return <- as.xts(data.frame(GSPC = stock_return))
   stock_return <- (stock_return - 1) * 100
 
-  candleChart(stock_return, up.col = "black", dn.col = "red", theme = "white")
+  candleChart(stock_return, subset = paste(start, ":", sep = ""), up.col = "black", dn.col = "red", theme = "white")
   addSMA(n = c(30, 120))
 #  addSMA(n = c(7, 30, 120))
   
