@@ -51,3 +51,19 @@ ggplot() +
 ```
 
 
+
+```{r}
+count_ma = ts(na.omit(daily_data$cnt_ma), frequency=30)
+decomp = stl(count_ma, s.window="periodic")
+deseasonal_cnt <- seasadj(decomp)
+plot(decomp)
+```
+
+
+
+```{r}
+adf.test(count_ma, alternative = "stationary")
+```
+
+
+
