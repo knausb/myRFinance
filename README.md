@@ -24,9 +24,9 @@ Where I try to teach myself about finance.
 * [Automated Trading with R](https://www.oreilly.com/library/view/automated-trading-with/9781484221785/#toc-start). Quantitative Research and Platform Development Chris Conlan. Apress. 2016.
 * Introduction to R for Quantitative Finance. Gergely Darόczi. Packt. 2013.
 * Mastering R for Quantitative Finance. Edina Berlinger. Packt. 2015.
-
-
-
+* [Finance](https://www.rpackages.io/view/Finance)
+* [Processing and Analyzing Financial Data with R](https://www.msperlin.com/pafdR/index.html)
+* [Business Case Analysis with R](https://github.com/apress/business-case-analysis-w-r)
 
 
 
